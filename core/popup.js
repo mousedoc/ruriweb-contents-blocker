@@ -1,10 +1,10 @@
 ; (function () {
-    console.log('[Ruriweb-comment-blocker] Running extension')
+    console.log('[ruriweb-shit-protector] Running extension')
 
     BlockComments()
 
     function BlockComments() {
-        console.log('[Ruriweb-comment-blocker] blockComments()')
+        console.log('[ruriweb-shit-protector] blockComments()')
 
         // Add padding-bottom on main_view
         var board_main_view = document.querySelector('.board_main_view')
