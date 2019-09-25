@@ -4,29 +4,22 @@
     "version": "1.0",
     "manifest_version": 2,
 
-    "browser_action": {
-        "default_popup": "app.html"
-    },
-
-    "permissions": [
-        "*://*.bbs.ruliweb.com/", "*://bbs.ruliweb.com/", "*://m.ruliweb.com/"
-    ],
-
-    "background": {
-        "scripts": ["logger.js"]
-    },
-
     "content_scripts": [
         {
+            "matches": ["<all_urls>"],
+            "js": ["logger.js", "contentsSelector.js"]
+        }, {
             "matches": [
                 "*://*.bbs.ruliweb.com/*", "*://bbs.ruliweb.com/*", "*://m.ruliweb.com/*"
             ],
 
-            "js": [
-                "logger.js", "app.js"
-            ],
-
-            "css": ["app.css"]
+            "js": ["app.js"]
         }
-    ]
+
+    ],
+
+
+    "browser_action": {
+        "default_popup": "app.html"
+    }
 }
