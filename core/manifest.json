@@ -2,23 +2,27 @@
     "name": "Ruriweb Shit Protector",
     "description": "루리웹 댓글 차단기",
     "version": "1.0",
-    "manifest_version": 3,
+    "manifest_version": 2,
 
     "browser_action": {
-        "default_popup": "popup.html"
+        "default_popup": "app.html"
     },
 
     "permissions": [
-        "*://*.bbs.ruliweb.com/*", "*://bbs.ruliweb.com/*"
+        "*://*.bbs.ruliweb.com/", "*://bbs.ruliweb.com/", "*://m.ruliweb.com/"
     ],
 
+    "background": {
+        "scripts": ["logger.js"]
+    },
 
     "content_scripts": [
         {
             "matches": [
-                "*://*.bbs.ruliweb.com/*", "*://bbs.ruliweb.com/*"
+                "*://*.bbs.ruliweb.com/*", "*://bbs.ruliweb.com/*", "*://m.ruliweb.com/*"
             ],
-            "js": ["popup.js"]
+
+            "js": ["logger.js", "app.js"]
         }
     ]
 }
