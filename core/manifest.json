@@ -1,6 +1,6 @@
 {
-    "name": "Ruriweb Shit Protector",
-    "description": "루리웹 댓글 차단기",
+    "name": "Ruriweb Contents Blocker",
+    "description": "루리웹 컨텐츠 차단기",
     "version": "1.0",
     "manifest_version": 2,
 
@@ -22,7 +22,11 @@
                 "*://*.bbs.ruliweb.com/*", "*://bbs.ruliweb.com/*", "*://m.ruliweb.com/*"
             ],
 
-            "js": ["logger.js", "app.js"]
+            "js": [
+                "logger.js", "app.js"
+            ],
+
+            "css": ["app.css"]
         }
     ]
 }
