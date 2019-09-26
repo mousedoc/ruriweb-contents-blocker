@@ -17,14 +17,17 @@ ContentMap = {
             return false;
         
 
-        return localStorage.getItem(this.getConvertedKey(key));
+
+        return localStorage.getItem(this.getConvertedKey(key)) == 'true';
     },
 
+    // Return by boolean type
     set: function (key, value) {
 
         if (key in contentMap == false) 
             return;
         
+
 
         localStorage.setItem(this.getConvertedKey(key), value);
     }
@@ -36,35 +39,42 @@ function initializeSelector() {
 
     // document is already ready to go
     if (document.readyState === "complete" || document.readyState === "loaded") {
-        initAppCheckBox();
+        process();
     } else 
-        document.addEventListener('DOMContentLoaded', initAppCheckBox);
+        document.addEventListener('DOMContentLoaded', process);
     
 
 
-    function initAppCheckBox() {
+    function process() {
         Object.keys(contentMap).forEach(function (key) {
-
-            console.log(key);
-            var checkBox = document.getElementById(key);
-
-            if (checkBox) {
-
-                var value = ContentMap.get(key) == 'true';
-                checkBox.checked = value;
-
-                checkBox.addEventListener('change', function (element) {
-                    Logger.log(key + ' : ' + element.target.checked);
-                    ContentMap.set(key, element.target.checked);
-                });
-
-                
-                // var text = document.getElementById('${key}-text');
-                // if (text) 
-                //     text.style.display = 'none';
-                
-            }
+            updateCheckBoxValue(key);
+            updateCheckBoxText(key);
         });
+    }
+
+    function updateCheckBoxValue(key) {
+        var checkBox = document.getElementById(key);
+        if (checkBox) {
+
+            checkBox.checked = ContentMap.get(key);
+
+            checkBox.addEventListener('change', function (element) {
+                Logger.log(key + ' : ' + element.target.checked);
+                ContentMap.set(key, element.target.checked);
+
+                updateCheckBoxText(key);
+            });
+        }
+    }
+
+    function updateCheckBoxText(key) {
+
+        console.log(key + '-text');
+        var textBox = document.getElementById(key + '-text');
+        console.log(textBox);
+        if (textBox) {
+            textBox.innerHTML = ContentMap.get(key) ? 'ON' : 'OFF';
+        }
     }
 }
 
