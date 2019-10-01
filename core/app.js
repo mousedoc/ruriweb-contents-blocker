@@ -1,12 +1,32 @@
 (function () {
-    
+
     Logger.log('Run');
 
-    removeComments();
-    removeViewCounts();
-    removeAdvertising();
+    ContentMap.get('reply', function (value) {
+        if (value) {
+            removeReply();
+        }
+    });
 
-    function removeComments() {
+    ContentMap.get('reply-count', function (value) {
+        if (value) {
+            removeReplyCount();
+        }
+    });
+
+    ContentMap.get('view-count', function (value) {
+        if (value) {
+            removeViewCount();
+        }
+    });
+
+    ContentMap.get('recommend-count', function (value) {
+        if (value) {
+            removeRecommendCount();
+        }
+    });
+
+    function removeReply() {
         Logger.logExecute(arguments.callee.name);
 
         // Add padding-bottom on main_view
@@ -30,7 +50,7 @@
         Logger.logDone(arguments.callee.name);
     }
 
-    function removeViewCounts() {
+    function removeViewCount() {
         Logger.logExecute(arguments.callee.name);
 
         var numReplys = document.querySelectorAll('.num_reply');
@@ -43,7 +63,14 @@
         Logger.logDone(arguments.callee.name);
     }
 
-    function removeAdvertising() {
+    function removeReplyCount() {
+        Logger.logExecute(arguments.callee.name);
+
+
+        Logger.logDone(arguments.callee.name);
+    }
+
+    function removeRecommendCount() {
         Logger.logExecute(arguments.callee.name);
 
 
