@@ -2,25 +2,25 @@
 
     Logger.log('Run');
 
-    ContentMap.get('reply', function (value) {
+    Storage.get('reply', function (value) {
         if (value) {
             removeReply();
         }
     });
 
-    ContentMap.get('reply-count', function (value) {
+    Storage.get('reply-count', function (value) {
         if (value) {
             removeReplyCount();
         }
     });
 
-    ContentMap.get('view-count', function (value) {
+    Storage.get('view-count', function (value) {
         if (value) {
             removeViewCount();
         }
     });
 
-    ContentMap.get('recommend-count', function (value) {
+    Storage.get('recommend-count', function (value) {
         if (value) {
             removeRecommendCount();
         }

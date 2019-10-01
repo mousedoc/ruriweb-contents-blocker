@@ -1,28 +1,3 @@
-let contentMap = {};
-contentMap['reply'] = false;
-contentMap['view-count'] = false;
-contentMap['reply-count'] = false;
-contentMap['recommend-count'] = false;
-
-var storage = chrome.storage.local;
-
-ContentMap = {
-
-    set: function (key, value, callback) {
-        var obj = {};
-        obj[key] = value;
-        storage.set(obj, function (result) {
-            callback(key, value);
-        });
-    },
-
-    get: function (key, callback) {
-        storage.get(key, function (result) {
-            callback(result[key]);
-        });
-    }
-};
-
 function initializeSelector() {
 
     Logger.logExecute(arguments.callee.name);
@@ -35,9 +10,9 @@ function initializeSelector() {
     }
 
     function process() {
-        Object.keys(contentMap).forEach(function (key) {
+        Storage.keys.forEach(function (key) {
 
-            ContentMap.get(key, function (value) {
+            Storage.get(key, function (value) {
 
                 updateCheckBoxValue(key, value);
                 updateCheckBoxText(key, value);
@@ -53,7 +28,7 @@ function initializeSelector() {
 
             checkBox.addEventListener('change', function (element) {
                 Logger.log(key + ' : ' + element.target.checked);
-                ContentMap.set(key, element.target.checked, updateCheckBoxText);
+                Storage.set(key, element.target.checked, updateCheckBoxText);
             });
         }
     }
