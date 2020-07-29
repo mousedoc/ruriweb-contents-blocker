@@ -1,16 +1,9 @@
 let map = {};
-map['reply'] = false;
-map['view-count'] = false;
-map['reply-count'] = false;
-map['recommend-count'] = false;
+map['active'] = false;
 
 var storage = chrome.storage.local;
 
 Storage = {
-
-    // getKeys: function () {
-    //     return Object.keys(map);
-    // },
 
     set: function (key, value, callback) {
         var obj = {};

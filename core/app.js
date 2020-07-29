@@ -2,77 +2,46 @@
 
     Logger.log('Run');
 
-    Storage.get('reply', function (value) {
+    Storage.get('active', function (value) {
         if (value) {
-            removeReply();
+            removeContents();
         }
     });
 
-    Storage.get('reply-count', function (value) {
-        if (value) {
-            removeReplyCount();
-        }
-    });
-
-    Storage.get('view-count', function (value) {
-        if (value) {
-            removeViewCount();
-        }
-    });
-
-    Storage.get('recommend-count', function (value) {
-        if (value) {
-            removeRecommendCount();
-        }
-    });
-
-    function removeReply() {
+    function removeContents() {
         Logger.logExecute(arguments.callee.name);
 
-        // Add padding-bottom on main_view
-        var boardMainView = document.querySelector('.board_main_view');
-        if (boardMainView) {
-            boardMainView.style.paddingBottom = '20px';
-        }
+        var removeQuery = 
+        [
+            '.board_main_bottom',
+            '.board_bottom',
+            '.comment_container',
+            '.btn_default btn_light no_box_shadow line_h_40 col_12',
+        ];
 
-        // Remove board_main_bottom
-        var boardMainBottom = document.querySelector('.board_main_bottom');
-        if (boardMainBottom) {
-            boardMainBottom.remove();
-        }
+        var removeAllQuery = 
+        [
+            '.num_reply',
+            '.reply_count',
+            '.nbp_container default'
+        ];
 
-        // Remove comments
-        var boardBottom = document.querySelector('.board_bottom');
-        if (boardBottom) {
-            boardBottom.remove();
-        }
+        removeQuery.forEach(function (element, index, array) {
+            var selected = document.querySelector(element);
+            if(selected){
+                selected.remove();
+            }
+        });
 
-        Logger.logDone(arguments.callee.name);
-    }
-
-    function removeViewCount() {
-        Logger.logExecute(arguments.callee.name);
-
-        var numReplys = document.querySelectorAll('.num_reply');
-        if (numReplys) {
-            numReplys.forEach(function (item, index, array) {
-                item.remove();
-            });
-        }
-
-        Logger.logDone(arguments.callee.name);
-    }
-
-    function removeReplyCount() {
-        Logger.logExecute(arguments.callee.name);
-
-
-        Logger.logDone(arguments.callee.name);
-    }
-
-    function removeRecommendCount() {
-        Logger.logExecute(arguments.callee.name);
-
+        removeAllQuery.forEach(function (element, index, array) {
+            var selected = document.querySelectorAll(element);
+            
+            if(selected){
+                selected.forEach(function (item, index, array) {
+                    item.remove();
+                });
+            }
+        });
 
         Logger.logDone(arguments.callee.name);
     }
